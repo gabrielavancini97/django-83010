@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-
 class Familiar(models.Model):
     nombre = models.CharField(max_length=100)
     edad = models.IntegerField()
@@ -11,7 +10,6 @@ class Familiar(models.Model):
 
     def __str__(self):
         return f"{self.nombre} ({self.edad} años) - {self.parentesco}"
-    
 
 class Curso(models.Model):
     nombre = models.CharField(max_length=100)
@@ -22,9 +20,9 @@ class Curso(models.Model):
     activo = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.nombre  
+        return self.nombre
 
- class Estudiante(models.Model):
+class Estudiante(models.Model):
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
@@ -32,4 +30,4 @@ class Curso(models.Model):
     fecha_inscripcion = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.nombre} {self.apellido}" 
+        return f"{self.nombre} {self.apellido}"

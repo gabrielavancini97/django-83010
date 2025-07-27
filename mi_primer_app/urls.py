@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('hola-mundo/', views.hola_mundo, name='hola-mundo'),
+    path('hola-mundo/', views.hola_mundo, name='hola-mundo'),#cuando entramos a hola mundo, se ejecuta el view
     path('crear-familiar/<str:nombre>/',
          views.crear_familiar, name='crear-familiar'),
     path('listar-familiares/', views.listar_familiares, name="listar-familiares"),
