@@ -19,5 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),#luego del http son los dos modelitos junto a mi primer app
-    path('primer-app/', include('mi_primer_app.urls')),#ponemos esto para que incluya las url de mi_primer_app
+    path('', include('mi_primer_app.urls')),#ponemos esto para que incluya las url de mi_primer_app
 ]
