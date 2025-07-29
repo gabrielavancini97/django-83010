@@ -44,10 +44,10 @@ def listar_cursos(request):
     cursos = Curso.objects.all()
     return render(request, 'mi_primer_app/listar-cursos.html', {"cursos": cursos})
 
-def buscar_cursos(request):
+def buscar_cursos(request): #Funcion para buscar curso
     if request.method == 'GET':
-        nombre = request.GET.get('nombre', '')
-        cursos = Curso.objects.filter(nombre__icontains=nombre)
+        nombre = request.GET.get('nombre', '') #tiene que coincidir con el NOMBRE de la FORMS.PY y LISTAR-CURSOS.html
+        cursos = Curso.objects.filter(nombre__icontains=nombre) #filter por nombre sea igual al nombre que tenemos guardado en cursos
         return render(request, 'mi_primer_app/listar-cursos.html', {"cursos": cursos, "nombre": nombre})
     
 def crear_estudiante(request):

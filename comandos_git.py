@@ -27,3 +27,7 @@
 
 # juntar ramas en main:
 # git merge "funciones-nuevas"
+
+#Templates PADRE.HTML
+#{% block NOMBRE DEL BLOQUE %} + {% endblock %}
+#en el template de mi primer app, ponemos al principio {% extends "padre.html" %}
