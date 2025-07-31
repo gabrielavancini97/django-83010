@@ -84,6 +84,13 @@ def crear_producto(request):
         form = ProductoForm()
     return render(request, 'crear_producto.html', {'form': form})
 
+#para listar productos:
+
+def listar_productos(request):
+    productos = Producto.objects.all()
+    return render(request, 'mi_primer_app/listar_productos.html', {'productos': productos})
+
+
 #para buscar productos
 def buscar_productos(request):
     if request.method == 'GET':
