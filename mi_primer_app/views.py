@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Familiar, Curso, Estudiante
-from .forms import CursoForm, EstudianteForm
+from .models import Familiar, Curso, Estudiante, Producto, Cliente, Pedido, DetallePedido
+from .forms import CursoForm, EstudianteForm, ProductoForm, ClienteForm, PedidoForm
 
 # Create your views here.
 
@@ -69,3 +69,72 @@ def crear_estudiante(request):
 def listar_estudiantes(request):
     estudiantes = Estudiante.objects.all()
     return render(request, 'mi_primer_app/listar-estudiantes.html', {"estudiantes": estudiantes})  
+
+
+#nuevas views
+#para crear producto:
+
+def crear_producto(request):
+    if request.method == 'POST':
+        form = ProductoForm(request.POST)
+        if form.is_valid():
+            Producto.objects.create(**form.cleaned_data)
+            return redirect('listar-productos')
+    else:
+        form = ProductoForm()
+    return render(request, 'crear_producto.html', {'form': form})
+
+#para buscar productos
+def buscar_productos(request):
+    if request.method == 'GET':
+        busqueda = request.GET.get('busqueda', '')
+        productos = Producto.objects.filter(
+            tipo__icontains=busqueda
+        ) | Producto.objects.filter(
+            medida__icontains=busqueda
+        )
+
+        return render(request, 'mi_primer_app/listar_productos.html', {
+            'productos': productos,
+            'busqueda': busqueda
+        })
+
+#para crear clientes:
+
+def crear_cliente(request):
+    if request.method == 'POST':
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            Cliente.objects.create(**form.cleaned_data)
+            return redirect('listar-clientes')
+    else:
+        form = ClienteForm()
+    return render(request, 'crear_cliente.html', {'form': form})
+
+#para listar los clientes
+
+def listar_clientes(request):
+    clientes = Cliente.objects.all()
+    return render(request, 'listar_clientes.html', {'clientes': clientes})
+
+#para listar los pedidos
+
+def listar_pedidos(request):
+    pedidos = Pedido.objects.all().select_related('cliente')
+    return render(request, 'listar_pedidos.html', {'pedidos': pedidos})
+
+#para la creacion del pedido... me costo muchisimo.. lo hice con ayuda..
+
+def crear_pedido(request):
+    if request.method == 'POST':
+        form = PedidoForm(request.POST)
+        if form.is_valid():
+            cliente_id = form.cleaned_data['cliente_id']
+            cliente = Cliente.objects.get(id=cliente_id)
+
+            Pedido.objects.create(cliente=cliente)  # fecha se agrega sola si es auto_now_add
+            return redirect('listar-pedidos')
+    else:
+        form = PedidoForm()
+    
+    return render(request, 'crear_pedido.html', {'form': form})
