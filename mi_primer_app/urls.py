@@ -23,9 +23,9 @@ urlpatterns = [
     path('productos/buscar/', views.buscar_productos, name='buscar-productos'),#Anda OK
     #clientes
     path('crear-cliente/', views.crear_cliente, name='crear-cliente'),#Anda OK
-    path('listar-clientes/', views.listar_clientes, name='listar-clientes'),#Ver si Funciona
+    path('listar-clientes/', views.listar_clientes, name='listar-clientes'),#Anda OK
     #pedidos
-    path('crear-pedido/', views.crear_pedido, name='crear-pedido'),#Ver si funciona
+    path('crear-pedido/', views.crear_pedido, name='crear-pedido'),#Anda OK
     path('listar-pedidos/', views.listar_pedidos, name='listar-pedidos'),
     # detalles de pedidos
     path('pedidos/<int:pedido_id>/agregar-detalle/', views.agregar_detalle_pedido, name='agregar-detalle-pedido'),
