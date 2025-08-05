@@ -82,7 +82,7 @@ def crear_producto(request):
             return redirect('listar-productos')
     else:
         form = ProductoForm()
-    return render(request, 'crear_producto.html', {'form': form})
+    return render(request, 'mi_primer_app/crear_producto.html', {'form': form})
 
 #Para listar productos:
 
@@ -116,19 +116,19 @@ def crear_cliente(request):
             return redirect('listar-clientes')
     else:
         form = ClienteForm()
-    return render(request, 'crear_cliente.html', {'form': form})
+    return render(request, 'mi_primer_app/crear_cliente.html', {'form': form})
 
 #para listar los clientes
 
 def listar_clientes(request):
     clientes = Cliente.objects.all()
-    return render(request, 'listar_clientes.html', {'clientes': clientes})
+    return render(request, 'mi_primer_app/listar_clientes.html', {'clientes': clientes})
 
 #para listar los pedidos
 
 def listar_pedidos(request):
     pedidos = Pedido.objects.all().select_related('cliente')
-    return render(request, 'listar_pedidos.html', {'pedidos': pedidos})
+    return render(request, 'mi_primer_app/listar_pedidos.html', {'pedidos': pedidos})
 
 #para la creacion del pedido... me costo muchisimo.. lo hice con ayuda..
 
@@ -144,7 +144,7 @@ def crear_pedido(request):
     else:
         form = PedidoForm()
     
-    return render(request, 'crear_pedido.html', {'form': form})
+    return render(request, 'mi_primer_app/crear_pedido.html', {'form': form})
 
 def agregar_detalle_pedido(request, pedido_id):
     if request.method == 'POST':
@@ -165,4 +165,4 @@ def agregar_detalle_pedido(request, pedido_id):
     else:
         form = DetallePedidoForm()
     
-    return render(request, 'crear_detalle_pedido.html', {'form': form})
+    return render(request, 'mi_primer_app/crear_detalle_pedido.html', {'form': form})

@@ -18,11 +18,11 @@ urlpatterns = [
 
 
  #Los PATH a continuacion son.. para el proyecto
-    path('crear-producto/', views.crear_producto, name='crear-producto'),#Ver si Funciona
+    path('crear-producto/', views.crear_producto, name='crear-producto'),#Anda OK
     path('listar-productos/', views.listar_productos, name='listar-productos'),#Anda OK
     path('productos/buscar/', views.buscar_productos, name='buscar-productos'),#Anda OK
     #clientes
-    path('crear-cliente/', views.crear_cliente, name='crear-cliente'),#Ver si Funciona
+    path('crear-cliente/', views.crear_cliente, name='crear-cliente'),#Anda OK
     path('listar-clientes/', views.listar_clientes, name='listar-clientes'),#Ver si Funciona
     #pedidos
     path('crear-pedido/', views.crear_pedido, name='crear-pedido'),#Ver si funciona
