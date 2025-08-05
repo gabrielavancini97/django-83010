@@ -1,0 +1,24 @@
+{% extends "master.html" %}
+
+{% block titulo %}Crear Producto{% endblock %}
+
+{% block contenido %}
+  <h2 style="margin-bottom: 20px;">Agregar Nuevo Producto</h2>
+
+  <form method="POST" action="">
+    {% csrf_token %}
+    <div style="display: flex; flex-direction: column; gap: 15px; max-width: 500px;">
+      {{ form.as_p }}
+    </div>
+
+    <button type="submit" style="
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #1d4ed8;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    ">Guardar Producto</button>
+  </form>
+{% endblock %}

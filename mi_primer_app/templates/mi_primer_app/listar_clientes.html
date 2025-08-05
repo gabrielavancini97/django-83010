@@ -1,0 +1,25 @@
+{% extends "master.html" %}
+
+{% block titulo %}Lista de Clientes{% endblock %}
+
+{% block contenido %}
+  <h2>Clientes Registrados</h2>
+
+  {% if clientes %}
+    <ul style="list-style: none; padding: 0;">
+      {% for cliente in clientes %}
+        <li style="background-color: #1b263b; color: #f1f5f9; margin: 10px 0; padding: 15px; border-radius: 8px;">
+          <strong>{{ cliente.nombre }}</strong><br>
+          {% if cliente.razon_social %}Razón Social: {{ cliente.razon_social }}<br>{% endif %}
+          {% if cliente.cuit %}CUIT: {{ cliente.cuit }}<br>{% endif %}
+          Email: {{ cliente.email }}<br>
+          Teléfono: {{ cliente.telefono }}<br>
+          Dirección: {{ cliente.direccion }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No hay clientes registrados aún.</p>
+  {% endif %}
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+
+{% block titulo %}Crear Pedido{% endblock %}
+
+{% block contenido %}
+  <h2>Nuevo Pedido</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+    
+    <div style="margin-bottom: 15px;">
+      {{ form.cliente_id.label_tag }}
+      {{ form.cliente_id }}
+    </div>
+
+    <button type="submit" style="padding: 10px 20px; background-color: #1d3557; color: white; border: none; border-radius: 5px;">
+      Crear Pedido
+    </button>
+  </form>
+
+  <p style="margin-top: 20px; color: gray;">* Asegurate de ingresar un ID de cliente válido ya registrado.</p>
+{% endblock %}

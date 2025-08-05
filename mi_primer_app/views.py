@@ -71,8 +71,8 @@ def listar_estudiantes(request):
     return render(request, 'mi_primer_app/listar-estudiantes.html', {"estudiantes": estudiantes})  
 
 
-#nuevas views
-#para crear producto:
+#PROYECTO 
+#Para crear producto:
 
 def crear_producto(request):
     if request.method == 'POST':
@@ -84,7 +84,7 @@ def crear_producto(request):
         form = ProductoForm()
     return render(request, 'crear_producto.html', {'form': form})
 
-#para listar productos:
+#Para listar productos:
 
 def listar_productos(request):
     productos = Producto.objects.all()
@@ -145,3 +145,24 @@ def crear_pedido(request):
         form = PedidoForm()
     
     return render(request, 'crear_pedido.html', {'form': form})
+
+def agregar_detalle_pedido(request, pedido_id):
+    if request.method == 'POST':
+        form = DetallePedidoForm(request.POST)
+        if form.is_valid():
+            pedido = Pedido.objects.get(id=pedido_id)
+            producto = Producto.objects.get(id=form.cleaned_data['producto_id'])
+            cantidad = form.cleaned_data['cantidad_metros']
+            precio_unitario = form.cleaned_data['precio_unitario']
+
+            DetallePedido.objects.create(
+                pedido=pedido,
+                producto=producto,
+                cantidad_metros=cantidad,
+                precio_unitario=precio_unitario
+            )
+            return redirect('listar-pedidos')  # o a una vista de detalle del pedido
+    else:
+        form = DetallePedidoForm()
+    
+    return render(request, 'crear_detalle_pedido.html', {'form': form})

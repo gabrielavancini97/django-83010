@@ -17,14 +17,17 @@ urlpatterns = [
          name="listar-estudiantes"),
 
 
- #los PATH a continuacion son.. para el proyecto
-    path('crear-producto/', views.crear_producto, name='crear-producto'),#falta el template
+ #Los PATH a continuacion son.. para el proyecto
+    path('crear-producto/', views.crear_producto, name='crear-producto'),#Ver si Funciona
     path('listar-productos/', views.listar_productos, name='listar-productos'),#Anda OK
     path('productos/buscar/', views.buscar_productos, name='buscar-productos'),#Anda OK
     #clientes
-    path('crear-cliente/', views.crear_cliente, name='crear-cliente'),#falta el TEMPLATE
-    path('listar-clientes/', views.listar_clientes, name='listar-clientes'),#falta el TEMPLATE
+    path('crear-cliente/', views.crear_cliente, name='crear-cliente'),#Ver si Funciona
+    path('listar-clientes/', views.listar_clientes, name='listar-clientes'),#Ver si Funciona
     #pedidos
-    path('crear-pedido/', views.crear_pedido, name='crear-pedido'),#falta el template de crear pedido
+    path('crear-pedido/', views.crear_pedido, name='crear-pedido'),#Ver si funciona
     path('listar-pedidos/', views.listar_pedidos, name='listar-pedidos'),
+    # detalles de pedidos
+    path('pedidos/<int:pedido_id>/agregar-detalle/', views.agregar_detalle_pedido, name='agregar-detalle-pedido'),
+
 ]

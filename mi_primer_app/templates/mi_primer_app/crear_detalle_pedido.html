@@ -1,0 +1,32 @@
+{% extends "master.html" %}
+
+{% block titulo %}Agregar Producto al Pedido{% endblock %}
+
+{% block contenido %}
+  <h2>Detalle del Pedido</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+
+    <div style="margin-bottom: 15px;">
+      {{ form.producto_id.label_tag }}
+      {{ form.producto_id }}
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      {{ form.cantidad_metros.label_tag }}
+      {{ form.cantidad_metros }}
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      {{ form.precio_unitario.label_tag }}
+      {{ form.precio_unitario }}
+    </div>
+
+    <button type="submit" style="padding: 10px 20px; background-color: #1d3557; color: white; border: none; border-radius: 5px;">
+      Agregar al Pedido
+    </button>
+  </form>
+
+  <p style="margin-top: 20px; color: gray;">* Recordá ingresar un ID de producto válido y completar los campos correctamente.</p>
+{% endblock %}
