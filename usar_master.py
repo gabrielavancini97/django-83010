@@ -13,3 +13,5 @@
 #<link href="{% static 'css/styles.css' %}"  rel="stylesheet" /> modificar la ruta del css
 
 #python manage.py createsuperuser
+#usuario: gabriel
+#contraseña: 40535672

@@ -1,5 +1,5 @@
 from django import forms
-
+from .models import Auto
 
 class CursoForm(forms.Form):
     nombre = forms.CharField(max_length=100, label='Nombre del Curso')
@@ -48,3 +48,8 @@ class DetallePedidoForm(forms.Form):
     producto_id = forms.IntegerField(label='ID del Producto')
     cantidad_metros = forms.DecimalField(max_digits=10, decimal_places=2, label='Cantidad (metros)')
     precio_unitario = forms.DecimalField(max_digits=10, decimal_places=2, label='Precio unitario ($)')
+
+class AutoForm(forms.ModelForm):#ver que ahora la herencia el forms.ModelForm
+    class Meta:
+        model = Auto
+        fields = ['marca', 'modelo', 'descripcion']

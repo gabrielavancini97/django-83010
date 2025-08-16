@@ -29,5 +29,8 @@ urlpatterns = [
     path('listar-pedidos/', views.listar_pedidos, name='listar-pedidos'),
     # detalles de pedidos
     path('pedidos/<int:pedido_id>/agregar-detalle/', views.agregar_detalle_pedido, name='agregar-detalle-pedido'),
+     #vistas basadas en clases
+    path('crear-auto/', views.AutoCreateView.as_view(), name="crear-auto"),
+    path('listar-autos/', views.AutoListView.as_view(), name="listar-autos"),
 
 ]

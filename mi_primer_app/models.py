@@ -76,3 +76,14 @@ class DetallePedido(models.Model):
         return self.cantidad_metros * self.precio_unitario
     
     #ahora deberia ejecutar los migrate--....
+
+    
+#clases
+
+class Auto(models.Model):
+    modelo = models.CharField(max_length=20)
+    marca = models.CharField(max_length=20)
+    descripcion = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.marca} {self.modelo}'
