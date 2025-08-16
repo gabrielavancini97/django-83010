@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from .models import Familiar, Curso, Estudiante, Producto, Cliente, Pedido, DetallePedido, Auto
 from .forms import CursoForm, EstudianteForm, ProductoForm, ClienteForm, PedidoForm, AutoForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+#from django.contrib.auth.decorators import login_required
+#from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -179,27 +179,27 @@ class AutoListView(ListView):#nombre del modelo/lista/view
     context_object_name = 'autos' #como se llama el campo al que se va a llamar, exactamente igual al listar en el html
 
 
-class AutoCreateView(LoginRequiredMixin, CreateView):
+class AutoCreateView(CreateView):
     model = Auto #que modelo
     form_class = AutoForm #que formulario
     template_name = 'mi_primer_app/crear-auto.html' #que template
     success_url = reverse_lazy('listar-autos') #a donde queremos que vaya luego de creado (antiguo redirect)
 
 
-#class AutoUpdateView(LoginRequiredMixin, UpdateView):
+class AutoUpdateView(UpdateView):
     model = Auto
     form_class = AutoForm
     template_name = 'mi_primer_app/crear-auto.html'
     success_url = reverse_lazy('listar-autos')
 
 
-#class AutoDetailView(LoginRequiredMixin, DetailView):
+class AutoDetailView(DetailView):
     model = Auto
     template_name = 'mi_primer_app/detalle-auto.html'
     context_object_name = 'auto'
 
 
-#class AutoDeleteView(LoginRequiredMixin, DeleteView):
+class AutoDeleteView(DeleteView):
     model = Auto
     template_name = 'mi_primer_app/eliminar-auto.html'
     success_url = reverse_lazy('listar-autos')
