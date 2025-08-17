@@ -30,3 +30,6 @@ facilitando la reutilización y reduciendo el desperdicio.
 - Publicar productos de segunda selección (caños, tubos, estructurales).
 - Conectar con la comunidad de vendedores y compradores.
 - Descubrir oportunidades de compra/venta de forma fácil y segura.
+
+# Videos
+https://drive.google.com/drive/folders/15odJaiNLjciSEnKmgZV76m-LN54QW81L?usp=sharing
