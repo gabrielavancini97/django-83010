@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.http import HttpResponse
 from .models import Familiar, Curso, Estudiante, Producto, Cliente, Pedido, DetallePedido, Auto
-from .forms import CursoForm, EstudianteForm, ProductoForm, ClienteForm, PedidoForm, AutoForm
+from .forms import CursoForm, EstudianteForm, ProductoForm, ClienteForm, PedidoForm, AutoForm, DetallePedidoForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-#from django.contrib.auth.decorators import login_required
-#from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -26,6 +26,7 @@ def listar_familiares(request):
     familiares = Familiar.objects.all()
     return render(request, 'mi_primer_app/listar-familiares.html', {"familiares": familiares})
 
+@login_required
 def crear_curso(request):
     if request.method == 'POST':
         form = CursoForm(request.POST)
@@ -53,7 +54,8 @@ def buscar_cursos(request): #Funcion para buscar curso
         nombre = request.GET.get('nombre', '') #tiene que coincidir con el NOMBRE de la FORMS.PY y LISTAR-CURSOS.html
         cursos = Curso.objects.filter(nombre__icontains=nombre) #filter por nombre sea igual al nombre que tenemos guardado en cursos
         return render(request, 'mi_primer_app/listar-cursos.html', {"cursos": cursos, "nombre": nombre})
-    
+
+@login_required    
 def crear_estudiante(request):
     if request.method == 'POST':
         form = EstudianteForm(request.POST)
@@ -77,7 +79,7 @@ def listar_estudiantes(request):
 
 #PROYECTO 
 #Para crear producto:
-
+@login_required
 def crear_producto(request):
     if request.method == 'POST':
         form = ProductoForm(request.POST)
@@ -89,13 +91,14 @@ def crear_producto(request):
     return render(request, 'mi_primer_app/crear_producto.html', {'form': form})
 
 #Para listar productos:
-
+@login_required
 def listar_productos(request):
     productos = Producto.objects.all()
     return render(request, 'mi_primer_app/listar_productos.html', {'productos': productos})
 
 
 #para buscar productos
+@login_required
 def buscar_productos(request):
     if request.method == 'GET':
         busqueda = request.GET.get('busqueda', '')
@@ -111,7 +114,7 @@ def buscar_productos(request):
         })
 
 #para crear clientes:
-
+@login_required
 def crear_cliente(request):
     if request.method == 'POST':
         form = ClienteForm(request.POST)
@@ -123,19 +126,19 @@ def crear_cliente(request):
     return render(request, 'mi_primer_app/crear_cliente.html', {'form': form})
 
 #para listar los clientes
-
+@login_required
 def listar_clientes(request):
     clientes = Cliente.objects.all()
     return render(request, 'mi_primer_app/listar_clientes.html', {'clientes': clientes})
 
 #para listar los pedidos
-
+@login_required
 def listar_pedidos(request):
     pedidos = Pedido.objects.all().select_related('cliente')
     return render(request, 'mi_primer_app/listar_pedidos.html', {'pedidos': pedidos})
 
-#para la creacion del pedido... me costo muchisimo.. lo hice con ayuda..
-
+#para la creacion del pedido...
+@login_required
 def crear_pedido(request):
     if request.method == 'POST':
         form = PedidoForm(request.POST)
@@ -149,7 +152,7 @@ def crear_pedido(request):
         form = PedidoForm()
     
     return render(request, 'mi_primer_app/crear_pedido.html', {'form': form})
-
+@login_required
 def agregar_detalle_pedido(request, pedido_id):
     if request.method == 'POST':
         form = DetallePedidoForm(request.POST)
@@ -179,27 +182,27 @@ class AutoListView(ListView):#nombre del modelo/lista/view
     context_object_name = 'autos' #como se llama el campo al que se va a llamar, exactamente igual al listar en el html
 
 
-class AutoCreateView(CreateView):
+class AutoCreateView(LoginRequiredMixin, CreateView):
     model = Auto #que modelo
     form_class = AutoForm #que formulario
     template_name = 'mi_primer_app/crear-auto.html' #que template
     success_url = reverse_lazy('listar-autos') #a donde queremos que vaya luego de creado (antiguo redirect)
 
 
-class AutoUpdateView(UpdateView):
+class AutoUpdateView(LoginRequiredMixin, UpdateView):
     model = Auto
     form_class = AutoForm
     template_name = 'mi_primer_app/crear-auto.html'
     success_url = reverse_lazy('listar-autos')
 
 
-class AutoDetailView(DetailView):
+class AutoDetailView(LoginRequiredMixin, DetailView):
     model = Auto
     template_name = 'mi_primer_app/detalle-auto.html'
     context_object_name = 'auto'
 
 
-class AutoDeleteView(DeleteView):
+class AutoDeleteView(LoginRequiredMixin, DeleteView):
     model = Auto
     template_name = 'mi_primer_app/eliminar-auto.html'
     success_url = reverse_lazy('listar-autos')

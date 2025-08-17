@@ -26,7 +26,11 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+
+                {% if user.avatar %}
+                {% comment %} <a class="navbar-brand" href="index.html">Start Bootstrap</a> {% endcomment %}
+                <img src="{{ user.avatar.image.url }}" alt="Avatar" style="width: 150px; height: 150px;">
+                {% endif %}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -41,6 +45,19 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url "listar-productos" %}">Listar Productos</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url "crear-auto" %}">Crear Auto</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url "listar-autos" %}">Listar Autos</a></li>
+
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <form action="{% url 'logout' %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary">Logout</button>
+                                </form>
+                            </li>   
+                        
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url "login" %}">Login</a></li>  
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url "register" %}">Registro</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -53,6 +70,7 @@
                         <div class="site-heading">
                             <h1>Hola! Bienvenido a EcoTubo!</h1>
                             <span class="subheading">Donde podras comercializar tubos economicos</span>
+                            <span class="subheading">Hola! Sos el usuario {{user.username}}</span>                
                         </div>
                     </div>
                 </div>
@@ -67,56 +85,17 @@
                     <!-- Post preview-->
                     <div class="post-preview">
                         <a href="post.html">
-                            <h2 class="post-title">Man must explore, and this is exploration at its greatest</h2>
-                            <h3 class="post-subtitle">Problems look mighty small from 150 miles up</h3>
+                            <h2 class="post-title">¡Hola! Nos alegra que estés aquí. Te invitamos a crear tu cuenta y comenzar a cargar tus productos de segunda mano, como caños y tubos estructurales. Únete a nuestra comunidad, conecta con otros y descubre las mejores oportunidades para vender y comprar de manera fácil y segura. ¡Te esperamos!</h2>
+                            <h3 class="post-subtitle">Completar</h3>
                         </a>
                         <p class="post-meta">
                             Posted by
-                            <a href="#!">Start Bootstrap</a>
-                            on September 24, 2023
+                            <a href="#!">Jorge Gabriel Avancini</a>
+                            on August, 2025
                         </p>
                     </div>
                     <!-- Divider-->
-                    <hr class="my-4" />
-                    <!-- Post preview-->
-                    <div class="post-preview">
-                        <a href="post.html"><h2 class="post-title">I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.</h2></a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
-                            on September 18, 2023
-                        </p>
-                    </div>
-                    <!-- Divider-->
-                    <hr class="my-4" />
-                    <!-- Post preview-->
-                    <div class="post-preview">
-                        <a href="post.html">
-                            <h2 class="post-title">Science has not yet mastered prophecy</h2>
-                            <h3 class="post-subtitle">We predict too much for the next year and yet far too little for the next ten.</h3>
-                        </a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
-                            on August 24, 2023
-                        </p>
-                    </div>
-                    <!-- Divider-->
-                    <hr class="my-4" />
-                    <!-- Post preview-->
-                    <div class="post-preview">
-                        <a href="post.html">
-                            <h2 class="post-title">Failure is not an option</h2>
-                            <h3 class="post-subtitle">Many say exploration is part of our destiny, but it’s actually our duty to future generations.</h3>
-                        </a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
-                            on July 8, 2023
-                        </p>
-                    </div>
-                    <!-- Divider-->
-                    <hr class="my-4" />
+                    <hr class="my-4" />        
                     <!-- Pager-->
                     <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
                 </div>

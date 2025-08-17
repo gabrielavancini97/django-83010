@@ -22,8 +22,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),#luego del http son los dos modelitos junto a mi primer app
     path('', include('mi_primer_app.urls')),#ponemos esto para que incluya las url de mi_primer_app
-    
+    path('usuarios/', include('usuarios.urls')),#conecta con los usuarios , la parte final del proyecto
 ]
 
 urlpatterns += static(settings.MEDIA_URL,
-                      document_root=settings.MEDIA_ROOT)
+                      document_root=settings.MEDIA_ROOT)#permite mostrar la imagen desde una carpeta o no lo va a mostrar
