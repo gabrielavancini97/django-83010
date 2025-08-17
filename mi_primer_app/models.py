@@ -33,7 +33,7 @@ class Estudiante(models.Model):
         return f"{self.nombre} {self.apellido}"
 
 
-#aqui avanzo con las clases para el trabajo proyecto, que va a terminar siendo una web para comercializar productos estructurales:
+#Proyecto // MODELOS // Web para comercializar tubos estructurales
 
 class Producto(models.Model):#productos a comercializar
     tipo = models.CharField(max_length=100)  # Ej: "Rectangular", "Redondo"

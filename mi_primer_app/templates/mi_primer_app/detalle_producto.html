@@ -1,0 +1,18 @@
+{% extends "master.html" %}
+
+{% block titulo %}Detalle del Producto{% endblock %}
+
+{% block contenido %}
+<h2 class="mt-4">Detalle del Producto</h2>
+
+<ul class="list-group">
+  <li class="list-group-item"><strong>Tipo:</strong> {{ producto.tipo }}</li>
+  <li class="list-group-item"><strong>Medida:</strong> {{ producto.medida }}</li>
+  <li class="list-group-item"><strong>Espesor:</strong> {{ producto.espesor }} mm</li>
+  <li class="list-group-item"><strong>Largo:</strong> {{ producto.largo }} m</li>
+  <li class="list-group-item"><strong>Precio por metro:</strong> ${{ producto.precio_por_metro }}</li>
+  <li class="list-group-item"><strong>Stock:</strong> {{ producto.stock_metros }} m</li>
+</ul>
+
+<a href="{% url 'listar-productos' %}" class="btn btn-secondary mt-3">Volver</a>
+{% endblock %}

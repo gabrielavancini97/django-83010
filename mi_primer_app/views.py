@@ -91,14 +91,14 @@ def crear_producto(request):
     return render(request, 'mi_primer_app/crear_producto.html', {'form': form})
 
 #Para listar productos:
-@login_required
+
 def listar_productos(request):
     productos = Producto.objects.all()
     return render(request, 'mi_primer_app/listar_productos.html', {'productos': productos})
 
 
 #para buscar productos
-@login_required
+
 def buscar_productos(request):
     if request.method == 'GET':
         busqueda = request.GET.get('busqueda', '')
@@ -126,7 +126,7 @@ def crear_cliente(request):
     return render(request, 'mi_primer_app/crear_cliente.html', {'form': form})
 
 #para listar los clientes
-@login_required
+
 def listar_clientes(request):
     clientes = Cliente.objects.all()
     return render(request, 'mi_primer_app/listar_clientes.html', {'clientes': clientes})
@@ -173,6 +173,28 @@ def agregar_detalle_pedido(request, pedido_id):
         form = DetallePedidoForm()
     
     return render(request, 'mi_primer_app/crear_detalle_pedido.html', {'form': form})
+
+#ABOUT
+def about(request):
+    return render(request, 'mi_primer_app/about.html')
+
+#Vistas basadas en clases para el proyecto (productos)
+
+class ProductoDetailView(DetailView):
+    model = Producto
+    template_name = "mi_primer_app/detalle_producto.html"
+    context_object_name = "producto"
+
+class ProductoUpdateView(UpdateView):
+    model = Producto
+    fields = ['tipo', 'medida', 'espesor', 'largo', 'precio_por_metro', 'stock_metros']
+    template_name = "mi_primer_app/editar_producto.html"
+    success_url = reverse_lazy("listar-productos")
+
+class ProductoDeleteView(DeleteView):
+    model = Producto
+    template_name = "mi_primer_app/eliminar_producto.html"
+    success_url = reverse_lazy("listar-productos")
 
 #vistas basadas en clases para auto
 

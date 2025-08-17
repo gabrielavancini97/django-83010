@@ -36,4 +36,9 @@ urlpatterns = [
          views.AutoDetailView.as_view(), name="detalle-auto"),
     path('editar/<int:pk>/', views.AutoUpdateView.as_view(), name='editar-auto'),
     path('eliminar/<int:pk>/', views.AutoDeleteView.as_view(), name='eliminar-auto'),
+    path('about/', views.about, name='about'),
+    #para los botones de detalle, ver, eliminar
+    path('detalle-producto/<int:pk>/', views.ProductoDetailView.as_view(), name="detalle-producto"),
+    path('editar-producto/<int:pk>/', views.ProductoUpdateView.as_view(), name="editar-producto"),
+    path('eliminar-producto/<int:pk>/', views.ProductoDeleteView.as_view(), name="eliminar-producto"),
 ]
